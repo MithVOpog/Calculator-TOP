@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Orbitron&family=Share+Tech+Mono&display=swap');
+
+* {
+    font-family: 'Golos Text';
+}
+
+
+body {
+    height: 100vh;    
+    background-color: #DADBBD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+img {
+    width: 125px;
+    height: 32px;
+    filter: invert(11%) sepia(16%) saturate(3280%) hue-rotate(195deg) brightness(88%) contrast(96%);
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 95%;
+    margin: 0;
+}
+
+
+.main-container {
+    height: 77vh;
+    width: 290px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #D82148;
+    padding: 10px 5px;
+    border-radius: 50px;
+    box-shadow: inset -2px -2px 5px #2f2f32, 3px 3px 8px #2f2f32;
+}
+
+.calc-display {
+    height: 14vh;
+    width: 95%;
+    color: #151d3b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 2px #151d3b solid;
+    box-shadow: inset 0 0 20px #2f2f32, 3px 3px 8px #2f2f32;
+    background-color: #6EBF8B;
+}
+
+
+
+.inputs {
+    width: 80%;
+    height: 50%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(4, 55px);
+    grid-template-rows: repeat(5, 55px);
+    row-gap: 10px;
+    column-gap: 10px;
+    padding: 30px 0;
+}
+
+.equalTo {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#addition {
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.inputs > button {
+    display: flex;
+    color: #151d3b;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    border-radius: 15px;
+    border: none;
+    background-color: #dadbbd;
+    box-shadow: 5px 5px 8px #2f2f32, inset -2px -2px 5px #888972;
+}
+
+.input-display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: large;
+    width: 90%;
+    height: 30%;
+    border-bottom: 1px #151d3b8c dashed;
+}
+
+.result-display {
+    width: 90%;
+    height: 60%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    font-size: 40px;
+    
+}
+
+.input-display, .result-display {
+    font-family: Orbitron;
+    padding: 0 10px;
+}

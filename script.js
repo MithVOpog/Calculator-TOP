@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll('button');
-const content = document.querySelector('.content');
+const outputDisplay = document.querySelector('.result-display');
 const entry = [];
 let value1 = 0;
 let value2 = 0;
@@ -30,10 +30,10 @@ buttons.forEach((button) => {
             entry.length = 0;
             switch (operation) {
                 case 'addOp':
-                    content.textContent = addOperation(value1, value2);
+                    outputDisplay.textContent = addOperation(value1, value2);
                     break
                 default:
-                    content.textContent = "hello";       
+                    outputDisplay.textContent = "hello";       
             }
         }
 
