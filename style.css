@@ -41,7 +41,7 @@ img {
     gap: 1rem;
     background-color: #D82148;
     padding: 10px 5px;
-    border-radius: 50px;
+    border-radius: 30px;
     box-shadow: inset -2px -2px 5px #2f2f32, 3px 3px 8px #2f2f32;
 }
 
@@ -95,6 +95,18 @@ img {
     border: none;
     background-color: #dadbbd;
     box-shadow: 5px 5px 8px #2f2f32, inset -2px -2px 5px #888972;
+    transition: all 0.07s;
+}
+
+.inputs > button:hover {
+    transition: 30ms ease;
+    cursor: pointer;
+    box-shadow: 5px 5px 8px #2f2f32, inset 0px 0px 10px 3px #d82149a4;
+} 
+
+.clicking {
+    transform: scale(1.1);
+    transition: 30ms ease;
 }
 
 .input-display {
