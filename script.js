@@ -39,6 +39,7 @@ buttons.forEach((button) => {
             switch (operation) {
                 case 'addOp':
                     outputDisplay.textContent = addOperation(value1, value2);
+                    solDisplayArr.length = 0;
                     break
                 default:
                     outputDisplay.textContent = "hello";       
@@ -49,7 +50,7 @@ buttons.forEach((button) => {
 });
 
 
-const keys = Array.from(document.querySelectorAll('.input-key'));
+const keys = Array.from(document.querySelectorAll('.inputs'));
 keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
 function removeTransition(e) {
@@ -57,35 +58,47 @@ function removeTransition(e) {
     e.target.classList.remove('clicking');
 }
 
+
+/* Dynamic Display */
 function solDisplay(button) {
     console.log(button.id);
-
-     if (button.classList.contains('operator') && !button.classList.contains('clear')) {
+    if (isNaN(button.id)) {
         switch (button.id) {
             case 'addition':
                 solDisplayArr.push('+');
+                inputDisplay.textContent = solDisplayArr.join('');
                 break
             case 'subtract':
                 solDisplayArr.push('-');
+                inputDisplay.textContent = solDisplayArr.join('');
                 break
             case 'multiply':
                 solDisplayArr.push('x');
+                inputDisplay.textContent = solDisplayArr.join('');
                 break
-            case 'devide':
+            case 'divide':
                 solDisplayArr.push('÷');
+                inputDisplay.textContent = solDisplayArr.join('');
+                break
+            case 'clear-recent':
+                solDisplayArr.pop();
+                entry.pop();
+                inputDisplay.textContent = solDisplayArr.join('');
+                break
+            case 'all-clear':
+                solDisplayArr.length = 0;
+                console.log(solDisplayArr);
+                inputDisplay.textContent = '';
+                outputDisplay.textContent = '';
                 break
             default:
                 solDisplayArr.push('.');
-                
-        }
-    };
-
-    if (!button.classList.contains('clear') && !isNaN(button.id)){
+                inputDisplay.textContent = solDisplayArr.join('');
+        };
+    } else {
         solDisplayArr.push(button.id);
-
+        inputDisplay.textContent = solDisplayArr.join('');
     }
-
-    inputDisplay.textContent = solDisplayArr.join('');
 
 
 }
@@ -101,3 +114,20 @@ function addOperation(a,b) {
     value2 = 0;
     return sum;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

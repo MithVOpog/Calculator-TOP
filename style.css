@@ -42,7 +42,7 @@ img {
     background-color: #D82148;
     padding: 10px 5px;
     border-radius: 30px;
-    box-shadow: inset -2px -2px 5px #2f2f32, 3px 3px 8px #2f2f32;
+    box-shadow: inset -2px -2px 5px #2f2f32, 3px 3px 8px #2f2f32, inset 0px 0px 5px #2f2f32;
 }
 
 .calc-display {
