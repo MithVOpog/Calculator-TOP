@@ -3,49 +3,15 @@ const outputDisplay = document.querySelector('.result-display');
 const inputDisplay = document.querySelector('.input-display');
 const entry = [];
 const solDisplayArr = [];
-let value1 = 0;
-let value2 = 0;
-let operation;
+let value1 = null;
+let value2 = null;
+let operator = null;
 
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-
-        solDisplay(button);
-
+        populateEntry(button);
         button.classList.add('clicking');
-
-        if(button.classList.contains('numbers')) {
-            const tempValue = button.id;
-            entry.push(tempValue);
-        }
-
-        if(button.classList.contains('operator')){
-            if (value1 == 0) {
-                value1 = parseInt(entry.join(''));
-            } else {
-                value2 = entry.join('');
-            };
-            entry.length = 0;
-
-            if (button.id == 'addition'){
-                operation = 'addOp';
-            } 
-        }
-
-        if(button.classList.contains('equalTo')){
-            value2 = parseInt(entry.join(''));
-            entry.length = 0;
-            switch (operation) {
-                case 'addOp':
-                    outputDisplay.textContent = addOperation(value1, value2);
-                    solDisplayArr.length = 0;
-                    break
-                default:
-                    outputDisplay.textContent = "hello";       
-            }
-        }
-
     });
 });
 
@@ -59,26 +25,43 @@ function removeTransition(e) {
 }
 
 
-/* Dynamic Display */
-function solDisplay(button) {
-    console.log(button.id);
+/* Dynamic Display & Populating Entries */
+function populateEntry(button) {
     if (isNaN(button.id)) {
         switch (button.id) {
             case 'addition':
+                popVal()
+                operator = 'add';
                 solDisplayArr.push('+');
                 inputDisplay.textContent = solDisplayArr.join('');
                 break
             case 'subtract':
+                popVal()
+                operator = 'sub';
                 solDisplayArr.push('-');
                 inputDisplay.textContent = solDisplayArr.join('');
                 break
             case 'multiply':
-                solDisplayArr.push('x');
+                popVal()
+                operator = 'multi';
+                solDisplayArr.push('*');
                 inputDisplay.textContent = solDisplayArr.join('');
                 break
             case 'divide':
+                popVal()
+                operator = 'div';
                 solDisplayArr.push('÷');
                 inputDisplay.textContent = solDisplayArr.join('');
+                break
+            case 'equal-to':
+                console.log(value1);
+                if (value1 !== null) {
+                    value2 = parseFloat(entry.join(''));
+                    console.log(value2);
+                }
+                outputDisplay.textContent = (value1 = parseFloat(operate(value1, value2, operator))); 
+                entry.length = 0;
+                console.log('equal tp'); 
                 break
             case 'clear-recent':
                 solDisplayArr.pop();
@@ -86,19 +69,24 @@ function solDisplay(button) {
                 inputDisplay.textContent = solDisplayArr.join('');
                 break
             case 'all-clear':
+                value1 = null;
+                value2 = null;
+                entry.length = 0;
                 solDisplayArr.length = 0;
-                console.log(solDisplayArr);
                 inputDisplay.textContent = '';
                 outputDisplay.textContent = '';
                 break
             default:
+                entry.push('.');
                 solDisplayArr.push('.');
                 inputDisplay.textContent = solDisplayArr.join('');
         };
-    } else {
+    } else if (!isNaN(button.id)) {
+        entry.push(button.id);
+        console.log(button.id);
         solDisplayArr.push(button.id);
         inputDisplay.textContent = solDisplayArr.join('');
-    }
+    };
 
 
 }
@@ -108,16 +96,35 @@ function solDisplay(button) {
 
 /* All Math Functions */
 
-function addOperation(a,b) {
-    let sum = a + b;
-    value1 = 0;
-    value2 = 0;
-    return sum;
+//populate values
+function popVal(){
+    if (value1 === null) {
+        value1 = parseFloat(entry.join(''));
+        entry.length = 0;
+        console.log(value2);
+    } else if (value1 !== null) {
+        value2 = parseFloat(entry.join(''));
+        entry.length = 0;
+        console.log(value2);
+    } 
 }
 
 
-
-
+function operate(aValue, bValue, opt) {
+    if (opt === 'add') {
+        return Math.round((aValue + bValue) * 100) / 100;
+    } else if (opt === 'sub') {
+        return Math.round((aValue - bValue) * 100) / 100;
+    } else if (opt === 'multi') {
+        return Math.round((aValue * bValue) * 100) / 100;
+    } else if (opt === 'div') {
+        if (aValue == 0) {
+            return 'SyntaxErr';
+        } else {
+            return Math.round((aValue / bValue) * 100) / 100;
+        };
+    };
+}
 
 
 
