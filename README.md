@@ -11,6 +11,8 @@ release v1.0.1
 
 -implement decent UI
 
+-no keyboard functionalities
+
 Known Bugs:
 
 -input/output value display overflow (DOM)
